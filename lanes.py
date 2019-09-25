@@ -13,3 +13,10 @@ img_cp = np.copy(img)
 
 # grey-scale version of image
 grey = cv2.cvtColor(img_cp, cv2.COLOR_RGB2GRAY)
+
+# identifying the edges in image using cannny method
+# by computing gradient, to identify change in pixels
+# also applies GaussianBlur fn to reduce noise
+cann = cv2.Canny(grey, LOW_CANNY, UPPPER_CANNY)
+
+
