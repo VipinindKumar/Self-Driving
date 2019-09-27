@@ -57,7 +57,7 @@ img = cv2.Canny(img, LOW_CANNY, UPPPER_CANNY)
 img = region_wants(img)
 
 # get the lines from different almost in line points
-lines = cv2.HoughLinesP(img, rho=2, theta=np.pi/100, threshold=100, Lines=np.array([]), minLineLength=40, maxLineLength=5)
+lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, threshold=100, minLineLength=40, maxLineLength=5)
 
 line_img = display_lines(img, lines)
 
