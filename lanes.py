@@ -22,8 +22,6 @@ def region_wants(img):
 	# fill the tri_aea in the mask with white
 	cv2.fillPoly(mask, tri_area, 255)
 	
-	print(img.shape, mask.shape)
-	
 	# bitwise-and to delete the unwanted areas in image
 	img = cv2.bitwise_and(img, mask)
 	
@@ -37,7 +35,7 @@ def display_lines(img, lines):
 	
 	if lines is not None:
 		for line in lines:
-			x1, y1, x2, y2 = line
+			x1, y1, x2, y2 = line.flatten()
 			
 			# draw the line on the img_with_lines
 			cv2.line(img_with_lines, (x1, y1), (x2, y2), color=(0,255,0), thickness=10)
@@ -45,7 +43,6 @@ def display_lines(img, lines):
 	return img_with_lines
 
 image = cv2.imread(PATH)
-print(image.shape)
 
 # grey-scale version of image
 img = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
