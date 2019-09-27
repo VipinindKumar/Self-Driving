@@ -12,6 +12,9 @@ P2 = 1100, h
 P3 = 550, 250
 
 def region_wants(img):
+	'''	remove the unwanted region, from the img and
+		returns part of image that needed'''
+	
 	h = img.shape[0]
 	tri_area = np.array([[P1, P2, P3]])
 	
