@@ -27,6 +27,18 @@ def region_wants(img):
 	
 	return mask
 
+def display_lines(img, lines):
+	img_with_lines = np.zeros(img.shape)
+	
+	if lines is not None:
+		for line in lines:
+			x1, y1, x2, y2 = line
+			
+			# draw the line on the img_with_lines
+			cv2.line(img_with_lines, (x1, y1), (x2, y2), color=(0,255,0), thickness=10)
+	
+	return img_with_lines
+
 img = cv2.imread(PATH)
 
 # image copy to make changes
