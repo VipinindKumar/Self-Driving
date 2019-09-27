@@ -6,6 +6,21 @@ PATH = '' # to be filled
 # thresholds for canny method
 LOW_CANNY = 50
 UPPPER_CANNY = 150
+# ponits for triangular area for lane selection
+P1 = 200, h
+P2 = 1100, h
+P3 = 550, 250
+
+def region_wants(img):
+	h = img.shape[0]
+	
+	tri_area = np.array([[P1, P2, P3]])
+	
+	mask = np.zeros(image.shape)
+	# fill the tri_aea in the mask
+	cv2.fillPoly(mask, tri_area, 255)
+	
+	return mask
 
 img = cv2.imread(PATH)
 
