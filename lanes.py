@@ -13,11 +13,10 @@ P3 = 550, 250
 
 def region_wants(img):
 	h = img.shape[0]
-	
 	tri_area = np.array([[P1, P2, P3]])
 	
 	mask = np.zeros(image.shape)
-	# fill the tri_aea in the mask
+	# fill the tri_aea in the mask with white
 	cv2.fillPoly(mask, tri_area, 255)
 	
 	return mask
