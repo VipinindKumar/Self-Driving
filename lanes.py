@@ -47,7 +47,7 @@ image = cv2.imread(PATH)
 # identifying the edges in image using cannny method
 # by computing gradient, to identify change in pixels
 # also applies GaussianBlur fn to reduce noise
-img = cv2.Canny(img, LOW_CANNY, UPPPER_CANNY)
+img = cv2.Canny(image, LOW_CANNY, UPPPER_CANNY)
 img = region_wants(img)
 
 # get the lines from different almost in line points
@@ -56,7 +56,7 @@ lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, thresho
 line_img = display_lines(img, lines)
 
 # combine the lines with the original image
-img = cv2.addWeighted(np.array(image), 0.8, line_img, 1, 1)
+img = cv2.addWeighted(image, 0.8, line_img, 1, 1)
 
 cv2.imshow(img)
 cv2.waitKey(0)
