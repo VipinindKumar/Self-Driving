@@ -42,10 +42,10 @@ def display_lines(img, lines):
 	
 	return img_with_lines
 
-img = cv2.imread(PATH)
+image = cv2.imread(PATH)
 
 # grey-scale version of image
-img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+img = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
 # identifying the edges in image using cannny method
 # by computing gradient, to identify change in pixels
@@ -56,6 +56,7 @@ img = region_wants(img)
 # get the lines from different almost in line points
 lines = cv2.HoughLinesP(img, rho=2, theta=np.pi/100, threshold=100, np.array([]), minLineLength=40, maxLineLength=5)
 
-img = display_lines(img, lines)
+line_img = display_lines(img, lines)
 
-
+# combine the lines with the original image
+img = cv2.addWeighted(image, 0.8, line_img, 1, 1)
