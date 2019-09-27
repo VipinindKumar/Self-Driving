@@ -7,8 +7,8 @@ PATH = 'test.jpg' # to be filled
 LOW_CANNY = 50
 UPPPER_CANNY = 150
 # ponits for triangular area for lane selection
-P1 = 200, h
-P2 = 1100, h
+P1 = 200
+P2 = 1100
 P3 = 550, 250
 
 def region_wants(img):
@@ -16,7 +16,7 @@ def region_wants(img):
 		returns part of image that needed'''
 	
 	h = img.shape[0]
-	tri_area = np.array([[P1, P2, P3]])
+	tri_area = np.array([[(P1,h), (P2,h), P3]])
 	
 	mask = np.zeros(img.shape)
 	# fill the tri_aea in the mask with white
