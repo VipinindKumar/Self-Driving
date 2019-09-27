@@ -28,6 +28,9 @@ def region_wants(img):
 	return mask
 
 def display_lines(img, lines):
+	''' takes an image and returns the image with
+		lines provided drawn on it'''
+	
 	img_with_lines = np.zeros(img.shape)
 	
 	if lines is not None:
@@ -41,17 +44,18 @@ def display_lines(img, lines):
 
 img = cv2.imread(PATH)
 
-# image copy to make changes
-img_cp = np.copy(img)
-
 # grey-scale version of image
-grey = cv2.cvtColor(img_cp, cv2.COLOR_RGB2GRAY)
+img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
 # identifying the edges in image using cannny method
 # by computing gradient, to identify change in pixels
 # also applies GaussianBlur fn to reduce noise
-cann = cv2.Canny(grey, LOW_CANNY, UPPPER_CANNY)
+img = cv2.Canny(img, LOW_CANNY, UPPPER_CANNY)
+img = region_wants(img)
 
+# get the lines from different almost in line points
+lines = cv2.HoughLinesP(img, rho=2, theta=np.pi/100, threshold=100, np.array([]), minLineLength=40, maxLineLength=5)
 
+img = display_lines(img, lines)
 
 
