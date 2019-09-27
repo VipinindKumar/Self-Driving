@@ -44,9 +44,6 @@ def display_lines(img, lines):
 
 image = cv2.imread(PATH)
 
-# grey-scale version of image
-img = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-
 # identifying the edges in image using cannny method
 # by computing gradient, to identify change in pixels
 # also applies GaussianBlur fn to reduce noise
