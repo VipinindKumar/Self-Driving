@@ -62,5 +62,5 @@ line_img = display_lines(image, lines)
 # combine the lines with the original image
 img = cv2.addWeighted(image, 0.8, line_img, 1, 1)
 
-cv2.imshow(mat=img)
+cv2.imshow('lanes', mat=img)
 cv2.waitKey(0)
