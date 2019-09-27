@@ -15,9 +15,12 @@ def region_wants(img):
 	h = img.shape[0]
 	tri_area = np.array([[P1, P2, P3]])
 	
-	mask = np.zeros(image.shape)
+	mask = np.zeros(img.shape)
 	# fill the tri_aea in the mask with white
 	cv2.fillPoly(mask, tri_area, 255)
+	
+	# bitwise-and to delete the unwanted areas in image
+	img = cv2.bitwise_and(img, mask)
 	
 	return mask
 
