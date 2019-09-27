@@ -18,9 +18,11 @@ def region_wants(img):
 	h = img.shape[0]
 	tri_area = np.array([[(P1,h), (P2,h), P3]])
 	
-	mask = np.zeros(img.shape)
+	mask = np.zeros_like(img)
 	# fill the tri_aea in the mask with white
 	cv2.fillPoly(mask, tri_area, 255)
+	
+	print(img.shape, mask.shape)
 	
 	# bitwise-and to delete the unwanted areas in image
 	img = cv2.bitwise_and(img, mask)
@@ -31,7 +33,7 @@ def display_lines(img, lines):
 	''' takes an image and returns the image with
 		lines provided drawn on it'''
 	
-	img_with_lines = np.zeros(img.shape)
+	img_with_lines = np.zeros_like(img)
 	
 	if lines is not None:
 		for line in lines:
@@ -43,6 +45,7 @@ def display_lines(img, lines):
 	return img_with_lines
 
 image = cv2.imread(PATH)
+print(image.shape)
 
 # grey-scale version of image
 img = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
