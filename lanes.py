@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-PATH = '' # to be filled
+PATH = 'test.jpg' # to be filled
 # thresholds for canny method
 LOW_CANNY = 50
 UPPPER_CANNY = 150
@@ -60,3 +60,6 @@ line_img = display_lines(img, lines)
 
 # combine the lines with the original image
 img = cv2.addWeighted(image, 0.8, line_img, 1, 1)
+
+cv2.imshow(img)
+cv2.waitKey(0)
