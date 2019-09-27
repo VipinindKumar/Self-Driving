@@ -59,7 +59,7 @@ lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, thresho
 line_img = display_lines(img, lines)
 
 # combine the lines with the original image
-img = cv2.addWeighted(image, 0.8, line_img, 1, 1)
+img = cv2.addWeighted(np.array(image), 0.8, line_img, 1, 1)
 
 cv2.imshow(img)
 cv2.waitKey(0)
