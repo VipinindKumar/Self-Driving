@@ -118,7 +118,7 @@ while(video.isOpened()):
 	img = cv2.addWeighted(frame, 0.8, line_img, 1, 1)
 
 	cv2.imshow('lanes', mat=img)
-	if cv2.waitKey(1) == ord('Esc'):
+	if cv2.waitKey(1) == ord('z'):
 		beak
 
 # destroy all cv2 windows
