@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 PATH = 'test2.png'
+PATHVID = ''
 # thresholds for canny method
 LOW_CANNY = 50
 UPPPER_CANNY = 150
@@ -88,29 +89,33 @@ def display_lines(image, lines):
 	
 	return image_with_lines
 
-image = cv2.imread(PATH)
+# image = cv2.imread(PATH)
 
-# grey scale of the image
-img = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+video = cv2.VideoCapture(PATHVID)
+while(video.isOpened()):
+	_, frame = video.read()
 
-# identifying the edges in image using cannny method
-# by computing gradient, to identify change in pixels
-# also applies GaussianBlur fn to reduce noise
-img = cv2.Canny(img, LOW_CANNY, UPPPER_CANNY)
+	# grey scale of the frame
+	img = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
-img = region_wants(img)
+	# identifying the edges in frame using cannny method
+	# by computing gradient, to identify change in pixels
+	# also applies GaussianBlur fn to reduce noise
+	img = cv2.Canny(img, LOW_CANNY, UPPPER_CANNY)
 
-# get the lines from different almost in line points
-lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, threshold=100, minLineLength=40, maxLineGap=5)
+	img = region_wants(img)
 
-# average the lines to single line for each side
-avg_lines = average_lines_parameter(image, lines)
+	# get the lines from different almost in line points
+	lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, threshold=100, minLineLength=40, maxLineGap=5)
 
-# display the lines on the image
-line_img = display_lines(image, avg_lines)
+	# average the lines to single line for each side
+	avg_lines = average_lines_parameter(frame, lines)
 
-# combine the lines with the original image
-img = cv2.addWeighted(image, 0.8, line_img, 1, 1)
+	# display the lines on the frame
+	line_img = display_lines(frame, avg_lines)
 
-cv2.imshow('lanes', mat=img)
-cv2.waitKey(0)
+	# combine the lines with the original frame
+	img = cv2.addWeighted(frame, 0.8, line_img, 1, 1)
+
+	cv2.imshow('lanes', mat=img)
+	cv2.waitKey(0)
