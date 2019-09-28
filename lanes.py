@@ -27,6 +27,10 @@ def region_wants(image):
 	
 	return image
 
+def average_lines_parameter(image, lines):
+	''' average the lines by averaging the slope and
+		intercept for left and right lane '''
+
 def display_lines(image, lines):
 	''' takes an image and returns the image with
 		lines provided drawn on it'''
@@ -57,6 +61,10 @@ img = region_wants(img)
 # get the lines from different almost in line points
 lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, threshold=100, minLineLength=40, maxLineGap=5)
 
+# average the lines to single line for each side
+avg_lines = average_lines_parameter(image, lines)
+
+# display the lines on the image
 line_img = display_lines(image, lines)
 
 # combine the lines with the original image
