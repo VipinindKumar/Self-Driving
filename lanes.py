@@ -118,4 +118,4 @@ while(video.isOpened()):
 	img = cv2.addWeighted(frame, 0.8, line_img, 1, 1)
 
 	cv2.imshow('lanes', mat=img)
-	cv2.waitKey(0)
+	cv2.waitKey(1)
