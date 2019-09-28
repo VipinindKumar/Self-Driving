@@ -70,6 +70,8 @@ def average_lines_parameter(image, lines):
 		# convert slopes, intercept to coordinates
 		left_avg_line = coordinates(image, left_avg_line)
 		right_avg_line = coordinates(image, right_avg_line)
+		
+		return np.array([left_avg_line, right_avg_line])
 
 def display_lines(image, lines):
 	''' takes an image and returns the image with
@@ -105,7 +107,7 @@ lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, thresho
 avg_lines = average_lines_parameter(image, lines)
 
 # display the lines on the image
-line_img = display_lines(image, lines)
+line_img = display_lines(image, avg_lines)
 
 # combine the lines with the original image
 img = cv2.addWeighted(image, 0.8, line_img, 1, 1)
