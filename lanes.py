@@ -37,8 +37,8 @@ def coordinates(image, line):
 	y1 = image.shape[0]
 	# keeping y2 restricted to 1/2 of image length
 	y2 = y1 * (1/2)
-	x1 = (y1 - c) / slope
-	x2 = (y2 - c) / slope
+	x1 = (y1 - c) / m
+	x2 = (y2 - c) / m
 	
 	return np.array([x1, y1, x2, y2])
 
