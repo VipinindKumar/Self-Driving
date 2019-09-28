@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-PATH = 'test.jpg' # to be filled
+PATH = 'test2.png'
 # thresholds for canny method
 LOW_CANNY = 50
 UPPPER_CANNY = 150
@@ -11,36 +11,36 @@ P1 = 200
 P2 = 1100
 P3 = 550, 250
 
-def region_wants(img):
-	'''	remove the unwanted region, from the img and
+def region_wants(image):
+	'''	remove the unwanted region, from the image and
 		returns part of image that needed'''
 	
-	h = img.shape[0]
+	h = image.shape[0]
 	tri_area = np.array([[(P1,h), (P2,h), P3]])
 	
-	mask = np.zeros_like(img)
+	mask = np.zeros_like(image)
 	# fill the tri_aea in the mask with white
 	cv2.fillPoly(mask, tri_area, 255)
 	
 	# bitwise-and to delete the unwanted areas in image
-	img = cv2.bitwise_and(img, mask)
+	image = cv2.bitwise_and(image, mask)
 	
-	return mask
+	return image
 
-def display_lines(img, lines):
+def display_lines(image, lines):
 	''' takes an image and returns the image with
 		lines provided drawn on it'''
 	
-	img_with_lines = np.zeros_like(img)
+	image_with_lines = np.zeros_like(image)
 	
 	if lines is not None:
 		for line in lines:
 			x1, y1, x2, y2 = line.flatten()
 			
-			# draw the line on the img_with_lines
-			cv2.line(img_with_lines, (x1, y1), (x2, y2), color=(0,255,0), thickness=10)
+			# draw the line on the image_with_lines
+			cv2.line(image_with_lines, (x1, y1), (x2, y2), color=(0,255,0), thickness=10)
 	
-	return img_with_lines
+	return image_with_lines
 
 image = cv2.imread(PATH)
 
