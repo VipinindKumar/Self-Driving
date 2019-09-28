@@ -27,9 +27,49 @@ def region_wants(image):
 	
 	return image
 
+def coordinates(image, line):
+	''' converts slope and intercept of a line
+		into its coordinates having restricted
+		y intercept '''
+	
+	m, c = line
+	
+	y1 = image.shape[0]
+	# keeping y2 restricted to 1/2 of image length
+	y2 = y1 * (1/2)
+	x1 = (y1 - c) / slope
+	x2 = (y2 - c) / slope
+	
+	return np.array([x1, y1, x2, y2])
+
 def average_lines_parameter(image, lines):
 	''' average the lines by averaging the slope and
-		intercept for left and right lane '''
+		intercept for left and right lane and 
+		returns their coordinates '''
+	
+	left_line = list()
+	rigth_line = list()
+	
+	if lines is not None:
+		for line in lines:
+			x1, y1, x2, y2 = line.flatten()
+			
+			# get slope and intercept for the line
+			m, c = np.polyfit((x1, x2), (y1, y2))
+			
+			# add the appropriate line to its corresponding list
+			if m > 0:
+				left_line.append([m, c])
+			else:
+				rigth_line.append([m, c])
+		
+		# average the lines parameters
+		left_avg_line = np.average(left_line, axis=0)
+		right_avg_line = np.average(rigth_line, axis=0)
+		
+		# convert slopes, intercept to coordinates
+		left_avg_line = coordinates(image, left_avg_line)
+		right_avg_line = coordinates(image, right_avg_line)
 
 def display_lines(image, lines):
 	''' takes an image and returns the image with
