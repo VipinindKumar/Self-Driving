@@ -55,7 +55,7 @@ def average_lines_parameter(image, lines):
 			x1, y1, x2, y2 = line.flatten()
 			
 			# get slope and intercept for the line
-			m, c = np.polyfit((x1, x2), (y1, y2))
+			m, c = np.polyfit((x1, x2), (y1, y2), deg=1)
 			
 			# add the appropriate line to its corresponding list
 			if m > 0:
