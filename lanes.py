@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 PATH = 'test2.png'
 PATHVID = 'test.mp4'
@@ -33,15 +34,16 @@ def coordinates(image, line):
 		into its coordinates having restricted
 		y intercept '''
 	
-	m, c = line
-	
-	y1 = image.shape[0]
-	# keeping y2 restricted to 1/2 of image length
-	y2 = int(y1 * (1/2))
-	x1 = int((y1 - c) / m)
-	x2 = int((y2 - c) / m)
-	
-	return np.array([x1, y1, x2, y2])
+	if math.isnan(line.any()):
+		m, c = line
+		
+		y1 = image.shape[0]
+		# keeping y2 restricted to 1/2 of image length
+		y2 = int(y1 * (1/2))
+		x1 = int((y1 - c) / m)
+		x2 = int((y2 - c) / m)
+		
+		return np.array([x1, y1, x2, y2])
 
 def average_lines_parameter(image, lines):
 	''' average the lines by averaging the slope and
@@ -66,13 +68,13 @@ def average_lines_parameter(image, lines):
 		
 		# average the lines parameters
 		left_avg_line = np.average(left_line, axis=0)
-		right_avg_line = np.average(rigth_line, axis=0)
+		rigth_avg_line = np.average(rigth_line, axis=0)
 		
 		# convert slopes, intercept to coordinates
 		left_avg_line = coordinates(image, left_avg_line)
-		right_avg_line = coordinates(image, right_avg_line)
+		rigth_avg_line = coordinates(image, rigth_avg_line)
 		
-		return np.array([left_avg_line, right_avg_line])
+		return np.array([left_avg_line, rigth_avg_line])
 
 def display_lines(image, lines):
 	''' takes an image and returns the image with
@@ -119,7 +121,7 @@ while(video.isOpened()):
 
 	cv2.imshow('lanes', mat=img)
 	if cv2.waitKey(1) == ord('z'):
-		beak
+		break
 
 # destroy all cv2 windows
 video.release()
