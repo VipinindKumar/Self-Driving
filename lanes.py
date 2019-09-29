@@ -103,9 +103,9 @@ def display_lines(image, lines):
 # image = cv2.imread(PATH)
 
 video = cv2.VideoCapture(PATHVID)
-while(video.isOpened()):
-	_, frame = video.read()
-	
+ret, frame = video.read()
+
+while(ret):
 	# grey scale of the frame
 	img = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
@@ -131,6 +131,8 @@ while(video.isOpened()):
 	cv2.imshow('lanes', mat=img)
 	if cv2.waitKey(1) == ord('z'):
 		break
+		
+	ret, frame = video.read()
 
 # destroy all cv2 windows
 video.release()
