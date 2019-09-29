@@ -34,16 +34,19 @@ def coordinates(image, line):
 		into its coordinates having restricted
 		y intercept '''
 	
-	if math.isnan(line.any()):
-		m, c = line
-		
-		y1 = image.shape[0]
-		# keeping y2 restricted to 1/2 of image length
-		y2 = int(y1 * (1/2))
-		x1 = int((y1 - c) / m)
-		x2 = int((y2 - c) / m)
-		
-		return np.array([x1, y1, x2, y2])
+	m, c = line
+	
+	# return origin if no line was not found previously
+	if [m,c] == [0,0]:
+		return np.array([0,0,0,0])
+	
+	y1 = image.shape[0]
+	# keeping y2 restricted to 1/2 of image length
+	y2 = int(y1 * (1/2))
+	x1 = int((y1 - c) / m)
+	x2 = int((y2 - c) / m)
+	
+	return np.array([x1, y1, x2, y2])
 
 def average_lines_parameter(image, lines):
 	''' average the lines by averaging the slope and
@@ -67,8 +70,14 @@ def average_lines_parameter(image, lines):
 				rigth_line.append([m, c])
 		
 		# average the lines parameters
-		left_avg_line = np.average(left_line, axis=0)
-		rigth_avg_line = np.average(rigth_line, axis=0)
+		if not left_line:
+			left_avg_line = np.array([0, 0])
+		else:
+			left_avg_line = np.average(left_line, axis=0)
+		if not rigth_line:
+			rigth_avg_line = np.array([0, 0])
+		else:
+			rigth_avg_line = np.average(rigth_line, axis=0)
 		
 		# convert slopes, intercept to coordinates
 		left_avg_line = coordinates(image, left_avg_line)
@@ -96,7 +105,7 @@ def display_lines(image, lines):
 video = cv2.VideoCapture(PATHVID)
 while(video.isOpened()):
 	_, frame = video.read()
-
+	
 	# grey scale of the frame
 	img = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
