@@ -9,9 +9,9 @@ PATHVID = 'VID3.mp4'
 LOW_CANNY = 50
 UPPPER_CANNY = 150
 # ponits for triangular area for lane selection
-P1 = 200
-P2 = 1100
-P3 = 550, 250
+P1 = 300
+P2 = 1400
+P3 = 730, 400
 
 def region_wants(image):
 	'''	remove the unwanted region, from the image and
