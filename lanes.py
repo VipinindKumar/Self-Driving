@@ -12,6 +12,8 @@ UPPPER_CANNY = 150
 P1 = 300
 P2 = 1400
 P3 = 730, 400
+# (1 - Length) of lanes predicted, origin is top-left
+YCOR = 0.8
 
 def region_wants(image):
 	'''	remove the unwanted region, from the image and
@@ -41,8 +43,8 @@ def coordinates(image, line):
 		return np.array([0,0,0,0])
 	
 	y1 = image.shape[0]
-	# keeping y2 restricted to 4/5 of image length
-	y2 = int(y1 * (4/5))
+	# keeping y2 restricted to YCOR of image length
+	y2 = int(y1 * YCOR)
 	x1 = int((y1 - c) / m)
 	x2 = int((y2 - c) / m)
 	
