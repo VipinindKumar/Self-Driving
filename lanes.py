@@ -1,10 +1,8 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-import math
 
 PATH = 'test3.png'
-PATHVID = 'VID3.mp4'
+PATHVID = 'VID4.mp4'
 # thresholds for canny method
 LOW_CANNY = 50
 UPPPER_CANNY = 150
