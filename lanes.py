@@ -107,7 +107,7 @@ video = cv2.VideoCapture(PATHVID)
 ret, frame = video.read()
 # creating output video file
 out = cv2.VideoWriter('out1.avi', cv2.VideoWriter_fourcc(*"MJPG"),
-					  30.0, (video.get(3), video.get(4)))
+					  30, (int(video.get(3)), int(video.get(4))))
 
 while(ret):
 	# grey scale of the frame
