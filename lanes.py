@@ -106,7 +106,7 @@ def display_lines(image, lines):
 video = cv2.VideoCapture(PATHVID)
 ret, frame = video.read()
 # creating output video file
-out = cv2.VideoWriter('out0.8.avi', cv2.VideoWriter_fourcc(*"MJPG"),
+out = cv2.VideoWriter('out0.9.avi', cv2.VideoWriter_fourcc(*"MJPG"),
 					  30, (int(video.get(3)), int(video.get(4))))
 
 while(ret):
@@ -124,10 +124,10 @@ while(ret):
 	lines = cv2.HoughLinesP(img, lines=np.array([]), rho=10, theta=np.pi/100, threshold=25, minLineLength=0, maxLineGap=5)
 
 	# average the lines to single line for each side
-#	avg_lines = average_lines_parameter(frame, lines)
+	avg_lines = average_lines_parameter(frame, lines)
 
 	# display the lines on the frame
-	line_img = display_lines(frame, lines)
+	line_img = display_lines(frame, avg_lines)
 
 	# combine the lines with the original frame
 	img = cv2.addWeighted(frame, 0.8, line_img, 1, 1)
