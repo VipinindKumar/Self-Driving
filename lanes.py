@@ -85,7 +85,7 @@ def average_lines_parameter(image, lines):
 
 		return np.array([left_avg_line, rigth_avg_line])
 
-def display_lines(image, lines, color):
+def display_lines(image, lines, clr, tkns):
 	''' takes an image and returns the image with
 		lines provided drawn on it'''
 
@@ -96,7 +96,7 @@ def display_lines(image, lines, color):
 			x1, y1, x2, y2 = line.flatten()
 
 			# draw the line on the image_with_lines
-			cv2.line(image_with_lines, (x1, y1), (x2, y2), color, thickness=1)
+			cv2.line(image_with_lines, (x1, y1), (x2, y2), color=clr, thickness=tkns)
 
 	return image_with_lines
 
@@ -106,7 +106,7 @@ def display_lines(image, lines, color):
 video = cv2.VideoCapture(PATHVID)
 ret, frame = video.read()
 # creating output video file
-out = cv2.VideoWriter('out0.85.avi', cv2.VideoWriter_fourcc(*"MJPG"),
+out = cv2.VideoWriter('out0.9.avi', cv2.VideoWriter_fourcc(*"MJPG"),
 					  30, (int(video.get(3)), int(video.get(4))))
 
 kernel = np.ones((5,5), np.uint8)
@@ -132,9 +132,9 @@ while(ret):
 	avg_lines = average_lines_parameter(frame, lines)
 
 	# display the lines on the frame
-	line_img = display_lines(frame, lines, (0,255,0))
+	line_img = display_lines(frame, lines, (0,255,0), 1)
 	# display the avg_lines on the frame
-	line_img = display_lines(line_img, avg_lines, (0,0,255))
+	line_img = display_lines(line_img, avg_lines, (0,0,255), 10)
 
 	# combine the lines with the original frame
 	img = cv2.addWeighted(frame, 0.8, line_img, 1, 1)
