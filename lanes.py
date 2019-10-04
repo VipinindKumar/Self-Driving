@@ -89,7 +89,7 @@ def display_lines(image, lines, clr, tkns):
 	''' takes an image and returns the image with
 		lines provided drawn on it'''
 
-	image_with_lines = np.zeros_like(image)
+	image_with_lines = image
 
 	if lines is not None:
 		for line in lines:
@@ -132,7 +132,7 @@ while(ret):
 	avg_lines = average_lines_parameter(frame, lines)
 
 	# display the lines on the frame
-	line_img = display_lines(frame, lines, (0,255,0), 1)
+	line_img = display_lines(np.zeros_like(frame), lines, (0,255,0), 1)
 	# display the avg_lines on the frame
 	line_img = display_lines(line_img, avg_lines, (0,0,255), 10)
 
