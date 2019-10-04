@@ -129,10 +129,10 @@ while(ret):
 	lines = cv2.HoughLinesP(img, lines=np.array([]), rho=2, theta=np.pi/100, threshold=100, minLineLength=10, maxLineGap=5)
 
 	# average the lines to single line for each side
-	avg_lines = average_lines_parameter(frame, lines)
+#	avg_lines = average_lines_parameter(frame, lines)
 
 	# display the lines on the frame
-	line_img = display_lines(frame, avg_lines)
+	line_img = display_lines(frame, lines)
 
 	# combine the lines with the original frame
 	img = cv2.addWeighted(frame, 0.8, line_img, 1, 1)
