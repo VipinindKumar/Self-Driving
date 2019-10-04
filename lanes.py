@@ -109,6 +109,9 @@ ret, frame = video.read()
 out = cv2.VideoWriter('out0.9.avi', cv2.VideoWriter_fourcc(*"MJPG"),
 					  30, (int(video.get(3)), int(video.get(4))))
 
+# kernel to use in dilating the image/frame
+kernel = np.ones((5,5), np.uint8)
+
 while(ret):
 	# grey scale of the frame
 	img = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -117,6 +120,9 @@ while(ret):
 	# by computing gradient, to identify change in pixels
 	# also applies GaussianBlur fn to reduce noise
 	img = cv2.Canny(img, LOW_CANNY, UPPPER_CANNY)
+
+	# increase the width of the foreground objects making it easier to capture lines
+	img = cv2.dilate(img, kernel, iterations=1)
 
 	img = region_wants(img)
 
