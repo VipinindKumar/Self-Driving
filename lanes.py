@@ -106,7 +106,7 @@ def display_lines(image, lines):
 video = cv2.VideoCapture(PATHVID)
 ret, frame = video.read()
 # creating output video file
-out = cv2.VideoWriter('out1.avi', cv2.VideoWriter_fourcc(*"MJPG"),
+out = cv2.VideoWriter('out0.5.avi', cv2.VideoWriter_fourcc(*"MJPG"),
 					  30, (int(video.get(3)), int(video.get(4))))
 
 while(ret):
