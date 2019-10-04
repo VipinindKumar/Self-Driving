@@ -85,7 +85,7 @@ def average_lines_parameter(image, lines):
 
 		return np.array([left_avg_line, rigth_avg_line])
 
-def display_lines(image, lines):
+def display_lines(image, lines, color):
 	''' takes an image and returns the image with
 		lines provided drawn on it'''
 
@@ -96,7 +96,7 @@ def display_lines(image, lines):
 			x1, y1, x2, y2 = line.flatten()
 
 			# draw the line on the image_with_lines
-			cv2.line(image_with_lines, (x1, y1), (x2, y2), color=(0,255,0), thickness=1)
+			cv2.line(image_with_lines, (x1, y1), (x2, y2), color, thickness=1)
 
 	return image_with_lines
 
@@ -132,7 +132,7 @@ while(ret):
 #	avg_lines = average_lines_parameter(frame, lines)
 
 	# display the lines on the frame
-	line_img = display_lines(frame, lines)
+	line_img = display_lines(frame, lines, (0,255,0))
 
 	# combine the lines with the original frame
 	img = cv2.addWeighted(frame, 0.8, line_img, 1, 1)
