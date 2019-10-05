@@ -114,7 +114,7 @@ def smooth_lines(image, lines, prev):
 video = cv2.VideoCapture(PATHVID)
 ret, frame = video.read()
 # creating output video file
-out = cv2.VideoWriter('out0.9.avi', cv2.VideoWriter_fourcc(*"MJPG"),
+out = cv2.VideoWriter('out1.0.avi', cv2.VideoWriter_fourcc(*"MJPG"),
 					  30, (int(video.get(3)), int(video.get(4))))
 
 kernel = np.ones((5,5), np.uint8)
