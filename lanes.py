@@ -100,6 +100,14 @@ def display_lines(image, lines, clr, tkns):
 
 	return image_with_lines
 
+def smooth_lines(image, lines, prev):
+	''' function that averages the lines with prev lines '''
+
+	if len(prev):
+		return average_lines_parameter(image, np.append(lines, prev, axis=0))
+	else:
+		return lines
+
 # image = cv2.imread(PATH)
 
 # starting video capture
@@ -110,6 +118,9 @@ out = cv2.VideoWriter('out0.9.avi', cv2.VideoWriter_fourcc(*"MJPG"),
 					  30, (int(video.get(3)), int(video.get(4))))
 
 kernel = np.ones((5,5), np.uint8)
+
+# keeps track of previous average lines
+prev_avg_lines = np.array([])
 
 while(ret):
 	# grey scale of the frame
@@ -130,6 +141,10 @@ while(ret):
 
 	# average the lines to single line for each side
 	avg_lines = average_lines_parameter(frame, lines)
+
+	# smooth the avg_Lines
+	avg_lines = smooth_lines(frame, avg_lines, prev_avg_lines)
+	prev_avg_lines = avg_lines
 
 	# display the lines on the frame
 	line_img = display_lines(np.zeros_like(frame), lines, (0,255,0), 1)
