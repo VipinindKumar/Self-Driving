@@ -1,5 +1,8 @@
 # Self-Driving - Lane Detection: program to detect lanes in a video 
 
+## Version 1.0:
+* Added smoothness of the average line between frames, to make the average line much more stable
+
 ## Version 0.9:
 * Added a average of all the lines, as a single line in the video
 
