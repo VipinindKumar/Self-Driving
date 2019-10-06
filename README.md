@@ -1,6 +1,6 @@
-# Self-Driving - Lane Detection
+# Self-Driving - Lane Detection: program to detect lanes in a video 
 
-## program to detect lanes in a video 
+## Version 0.5:
 
 ### Every frame from the video:
 * is turned into grey-scale version using cv2.cvtColor function
