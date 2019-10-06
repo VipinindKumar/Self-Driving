@@ -1,5 +1,9 @@
 # Self-Driving - Lane Detection: program to detect lanes in a video 
 
+## Version 0.8:
+
+* Improve lines detection, using improved parameters values for HoughLInesP
+
 ## Version 0.5:
 
 ### Every frame from the video:
