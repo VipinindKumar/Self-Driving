@@ -1,5 +1,9 @@
 # Self-Driving - Lane Detection: program to detect lanes in a video 
 
+## Version 0.85:
+
+* Increase the quality of lines predicted by dilating the frame after canny function, which increases the width of the foreground objects making it easier to capture lines
+
 ## Version 0.8:
 
 * Improve lines detection, using improved parameters values for HoughLInesP
