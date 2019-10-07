@@ -8,6 +8,8 @@
 
 ## Version 0.85:
 
+![0.85](output/out0.85.gif)
+
 * Increase the quality of lines predicted by dilating the frame after canny function, which increases the width of the foreground objects making it easier to capture lines
 
 ## Version 0.8:
