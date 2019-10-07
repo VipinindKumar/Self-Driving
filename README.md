@@ -4,6 +4,9 @@
 * Added smoothness of the average line between frames, to make the average line much more stable
 
 ## Version 0.9:
+
+![0.9](output/out0.9.gif)
+
 * Added a average of all the lines, as a single line in the video
 
 ## Version 0.85:
