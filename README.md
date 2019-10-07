@@ -1,7 +1,5 @@
 # Self-Driving - Lane Detection: program to detect lanes in a video 
 
-![afdfsdf](output.gif)
-
 ## Version 1.0:
 * Added smoothness of the average line between frames, to make the average line much more stable
 
@@ -17,6 +15,8 @@
 * Improve lines detection, using improved parameters values for HoughLInesP
 
 ## Version 0.5:
+
+![0.5](output/out0.5.gif)
 
 ### Every frame from the video:
 * is turned into grey-scale version using cv2.cvtColor function
