@@ -12,6 +12,8 @@
 
 ## Version 0.8:
 
+![0.8](output/out0.8.gif)
+
 * Improve lines detection, using improved parameters values for HoughLInesP
 
 ## Version 0.5:
