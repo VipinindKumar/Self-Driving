@@ -1,7 +1,7 @@
 # Self-Driving - Lane Detection: program to detect lanes in a video 
 
 
-[NH Lane detection](output/shortNhlanes.gif)
+![NH Lane detection](output/shortNhlanes.gif)
 
 
 
